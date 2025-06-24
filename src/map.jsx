@@ -4,12 +4,12 @@ import "./map.css";
 
 export default function map() {
     const brugesZone = [
-            [44.86961548606894, -0.5759715053876278],
-            [44.90933732533827, -0.5803017918796911],
-            [44.898025304376404, -0.6281459486766039],
-            [44.882096104125765, -0.6299925464225282],
-            [44.87097283840251, -0.6134755525897049],
-            [44.86955555082636, -0.5759734250747215]
+        [44.86961548606894, -0.5759715053876278],
+        [44.90933732533827, -0.5803017918796911],
+        [44.898025304376404, -0.6281459486766039],
+        [44.882096104125765, -0.6299925464225282],
+        [44.8709394415134, -0.6138000049514005],
+        [44.86955555082636, -0.5759734250747215]
     ];
     const lebouscatZone = [
         [44.86955555082636, -0.5759734250747215],
@@ -190,24 +190,110 @@ export default function map() {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Polygon positions={brugesZone} pathOptions={{ color: "red", fillOpacity: 0.4 }} />
-            <Polygon positions={lebouscatZone} pathOptions={{ color: "green", fillOpacity: 0.4 }} />
-            <Polygon positions={merignacZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }} />
-            <Polygon positions={pessacZone} pathOptions={{ color: "black", fillOpacity: 0.4 }} />
-            <Polygon positions={talenceZone} pathOptions={{ color: "purple", fillOpacity: 0.4 }} />
-            <Polygon positions={beglesZone} pathOptions={{ color: "pink", fillOpacity: 0.4 }} />
-            <Polygon positions={villenavedornonZone} pathOptions={{ color: "red", fillOpacity: 0.4 }} />
-            <Polygon positions={floiracZone} pathOptions={{ color: "green", fillOpacity: 0.4 }} />
-            <Polygon positions={cenonZone} pathOptions={{ color: "red", fillOpacity: 0.4 }} />
-            <Polygon positions={gradignanZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }} />
-            <Polygon positions={lormontZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }} />
-            <Polygon positions={cauderanZone} pathOptions={{ color: "black", fillOpacity: 0.4 }} />
-            <Polygon positions={bordeauxZone} pathOptions={{ color: "black", fillOpacity: 0.4 }} />
-            <Marker position={[44.837789, -0.57918]}>
+            <Polygon positions={brugesZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
                 <Popup>
-                    This is a popup
+                    <div>
+                        <strong>Zone de Bruges</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
                 </Popup>
-            </Marker>
+            </Polygon>
+            <Polygon positions={lebouscatZone} pathOptions={{ color: "green", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone du Bouscat</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={merignacZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Mérignac</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={pessacZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Pessac</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={talenceZone} pathOptions={{ color: "purple", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Talence</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={beglesZone} pathOptions={{ color: "pink", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Bègles</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={villenavedornonZone} pathOptions={{ color: "red", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Villenave d'Ornon</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={floiracZone} pathOptions={{ color: "green", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Floirac</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={cenonZone} pathOptions={{ color: "red", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Cenon</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={gradignanZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Gradignan</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={lormontZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Lormont</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={cauderanZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Cauderan</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
+            <Polygon positions={bordeauxZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
+                <Popup>
+                    <div>
+                        <strong>Zone de Bordeaux</strong>
+                        <p>Ceci est une zone cliquable avec une popup.</p>
+                    </div>
+                </Popup>
+            </Polygon>
         </MapContainer>
     );
 }
