@@ -12,8 +12,8 @@ function home() {
         }`;
 
     return (
-        <nav className="w-full p-4 shadow-md flex justify-between items-center">
-            <img src="/src/assets/craignometre.png" alt="Logo" className="h-16" />
+        <nav className="w-full p-4 shadow-md flex justify-between items-center bg-[#FFFFFF44] backdrop-blur-2xl absolute left-0 top-0 right-0 z-[2000]">
+            <p>Craignomètre</p>
             <div className="flex space-x-4">
                 <Link to="/" className={linkClass("/")}>
                     Accueil

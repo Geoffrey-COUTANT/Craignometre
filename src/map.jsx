@@ -1,7 +1,17 @@
 import React, {useEffect} from "react";
-import {MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip} from "react-leaflet";
+import {
+    AttributionControl,
+    MapContainer,
+    Marker,
+    Polygon,
+    Popup,
+    ScaleControl,
+    TileLayer,
+    Tooltip
+} from "react-leaflet";
 import "./map.css";
 import {getEvents} from "./api/api.js";
+import Legend from "./components/Legend.jsx";
 
 const brugesZone = [
     [44.86961548606894, -0.5759715053876278],
@@ -148,14 +158,6 @@ const lormontZone = [
     [44.88265201660258, -0.49407154902050365],
     [44.88753980374881, -0.5055676140369201],
 ];
-const cauderanZone = [
-    [44.85297163822122, -0.5939839403717144],
-    [44.863929060075634, -0.620044149062096],
-    [44.87165769568162, -0.6309680926900967],
-    [44.8608208353825, -0.6397440985439857],
-    [44.83898519727083, -0.6272086310185614],
-    [44.83705735422498, -0.6068572939801697],
-];
 const bordeauxZone = [
     [44.86955555082636, -0.5759734250747215],
     [44.89161529160168, -0.5786644937979304],
@@ -212,6 +214,14 @@ function lerpColor(a, b, t) {
     return `#${((1 << 24) + (rr << 16) + (rg << 8) + rb).toString(16).slice(1)}`;
 }
 
+function easeOutQuint(x) {
+    return 1 - Math.pow(1 - x, 5);
+}
+
+function getZoneColor(eventCount) {
+    return lerpColor("#898989", "#8E0000", easeOutQuint(eventCount / 7000.0));
+}
+
 export default function Map() {
     const [events, setEvents] = React.useState(undefined);
 
@@ -229,20 +239,20 @@ export default function Map() {
     if (!events) return <p>...</p>
 
     return (
-        <MapContainer center={[44.837789, -0.57918]} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={[44.837789, -0.57918]} zoom={13}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Polygon positions={brugesZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
-                <Tooltip direction="center" permanent>
+            <Polygon positions={brugesZone} pathOptions={{ color: getZoneColor(events[CodeInseeBruges].event_count), fillOpacity: 0.4 }}>
+                <Tooltip direction="center" permanent className={'map-count-tooltip-core'}>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Bruges</b>
                         <p className={'map-count-label'}>{events[CodeInseeBruges].event_count}</p>
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={lebouscatZone} pathOptions={{ color: "green", fillOpacity: 0.4 }}>
+            <Polygon positions={lebouscatZone} pathOptions={{ color: getZoneColor(events[CodeInseeBouscat].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Le Bouscat</b>
@@ -250,7 +260,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={merignacZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }}>
+            <Polygon positions={merignacZone} pathOptions={{ color: getZoneColor(events[CodeInseeMerignac].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Mérignac</b>
@@ -258,7 +268,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={pessacZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
+            <Polygon positions={pessacZone} pathOptions={{ color: getZoneColor(events[CodeInseePessac].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Pessac</b>
@@ -266,7 +276,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={talenceZone} pathOptions={{ color: "purple", fillOpacity: 0.4 }}>
+            <Polygon positions={talenceZone} pathOptions={{ color: getZoneColor(events[CodeInseeTalence].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Talence</b>
@@ -274,7 +284,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={beglesZone} pathOptions={{ color: "pink", fillOpacity: 0.4 }}>
+            <Polygon positions={beglesZone} pathOptions={{ color: getZoneColor(events[CodeInseeBegles].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Bègles</b>
@@ -282,7 +292,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={villenavedornonZone} pathOptions={{ color: "red", fillOpacity: 0.4 }}>
+            <Polygon positions={villenavedornonZone} pathOptions={{ color: getZoneColor(events[CodeInseeVillenave].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Villenave d'Ornon</b>
@@ -290,7 +300,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={floiracZone} pathOptions={{ color: "green", fillOpacity: 0.4 }}>
+            <Polygon positions={floiracZone} pathOptions={{ color: getZoneColor(events[CodeInseeFloirac].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Floirac</b>
@@ -298,7 +308,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={cenonZone} pathOptions={{ color: "red", fillOpacity: 0.4 }}>
+            <Polygon positions={cenonZone} pathOptions={{ color: getZoneColor(events[CodeInseeCenon].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Cenon</b>
@@ -306,7 +316,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={gradignanZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }}>
+            <Polygon positions={gradignanZone} pathOptions={{ color: getZoneColor(events[CodeInseeGradignan].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Gradignan</b>
@@ -314,7 +324,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={lormontZone} pathOptions={{ color: "yellow", fillOpacity: 0.4 }}>
+            <Polygon positions={lormontZone} pathOptions={{ color: getZoneColor(events[CodeInseeLormont].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Lormont</b>
@@ -322,7 +332,7 @@ export default function Map() {
                     </div>
                 </Tooltip>
             </Polygon>
-            <Polygon positions={bordeauxZone} pathOptions={{ color: "black", fillOpacity: 0.4 }}>
+            <Polygon positions={bordeauxZone} pathOptions={{ color: getZoneColor(events[CodeInseeBordeaux].event_count), fillOpacity: 0.4 }}>
                 <Tooltip direction="center" permanent>
                     <div className={'map-count-tooltip'}>
                         <b className={'map-count-header'}>Bordeaux</b>
