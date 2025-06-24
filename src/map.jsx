@@ -201,11 +201,10 @@ const CodeInseeVillenave = "33550";
 const CodeInseeCauderan = "33110";
 
 function lerpColor(t) {
-    if (t < 0.20) return "#007F0E"; // Green
+    if (t < 0.2) return "#007F0E"; // Green
     if (t < 0.4) return "#FFD800"; // Yellow-green
     if (t < 0.6) return "#FF8900"; // Yellow
-    if (t < 0.7) return "#FF3500"; // Yellow
-
+    if (t < 0.8) return "#FF3500"; // Yellow
     return "#8E0000"; // Red
 }
 
@@ -214,7 +213,7 @@ function easeOutQuint(x) {
 }
 
 function getZoneColor(eventCount) {
-    return lerpColor(easeOutQuint(eventCount / 7000.0));
+    return lerpColor(easeOutQuint(eventCount / 6200.0));
 }
 
 export default function Map() {
