@@ -6,8 +6,8 @@ function Home() {
         <div className="h-screen bg-gray-100 text-black flex flex-col">
             <Header />
             <div className="flex flex-col justify-center items-center flex-grow">
-                <h1 className="text-4xl font-bold mb-4">Bienvenue sur notre Craignomètre</h1>
-                <p className="text-lg">Faut expliquer ce qu'est le site !</p>
+                <h1 className="text-4xl font-bold mb-4">Bienvenue sur notre "Craignomètre"</h1>
+                <p className="text-lg">Prototype de carte d’identification des communes les moins sécuritaires.</p>
             </div>
         </div>
     );
