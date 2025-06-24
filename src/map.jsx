@@ -11,7 +11,6 @@ import {
 } from "react-leaflet";
 import "./map.css";
 import {getEvents} from "./api/api.js";
-import Legend from "./components/Legend.jsx";
 
 const brugesZone = [
     [44.86961548606894, -0.5759715053876278],
@@ -201,17 +200,13 @@ const CodeInseeTalence = "33522";
 const CodeInseeVillenave = "33550";
 const CodeInseeCauderan = "33110";
 
-function lerpColor(a, b, t) {
-    // a et b sont des strings hex, t est dans [0,1]
-    const ah = parseInt(a.slice(1), 16);
-    const bh = parseInt(b.slice(1), 16);
-    const ar = ah >> 16, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
-    const br = bh >> 16, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
-    const rr = Math.round(ar + t * (br - ar));
-    const rg = Math.round(ag + t * (bg - ag));
-    const rb = Math.round(ab + t * (bb - ab));
+function lerpColor(t) {
+    if (t < 0.20) return "#007F0E"; // Green
+    if (t < 0.4) return "#FFD800"; // Yellow-green
+    if (t < 0.6) return "#FF8900"; // Yellow
+    if (t < 0.7) return "#FF3500"; // Yellow
 
-    return `#${((1 << 24) + (rr << 16) + (rg << 8) + rb).toString(16).slice(1)}`;
+    return "#8E0000"; // Red
 }
 
 function easeOutQuint(x) {
@@ -219,7 +214,7 @@ function easeOutQuint(x) {
 }
 
 function getZoneColor(eventCount) {
-    return lerpColor("#898989", "#8E0000", easeOutQuint(eventCount / 7000.0));
+    return lerpColor(easeOutQuint(eventCount / 7000.0));
 }
 
 export default function Map() {
