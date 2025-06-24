@@ -65,6 +65,9 @@ def events_per_town(request):
     events = {}
 
     for event in models.Event.objects.all():
+        if event.year != 2024:
+            continue
+
         if events.get(event.town.insee_code) is None:
             events[event.town.insee_code] = {
                 'name': event.town.name,

@@ -1,4 +1,4 @@
-﻿const URL = "http://localhost:3000/craignometer";
+﻿const URL = "http://localhost:8000/craignometer";
 
 export async function getEvents() {
   try {
